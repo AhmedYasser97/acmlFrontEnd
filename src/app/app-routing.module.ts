@@ -9,7 +9,6 @@ import { PickTeamComponent } from './pick-team/pick-team.component';
 const routes: Routes = [
   {
     path: 'login',
-    // loadChildren: './login/login.module#LoginModule'
     component: LoginComponent
   },
   { path: 'home',

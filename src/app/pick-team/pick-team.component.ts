@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pick-team',
@@ -7,66 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickTeamComponent implements OnInit {
 
-  array = [
-    {
-      guid: '900ea552-ef68-42cc-b6a6-b8c4dff10fb7',
-      age: 32,
-      name: 'French'
-    },
-    {
-      guid: '880381d3-8dca-4aed-b207-b3b4e575a15f',
-      age: 25,
-      name: 'English'
-    },
-    {
-      guid: '87b47684-c465-4c51-8c88-3f1a1aa2671b',
-      age: 32,
-      name: 'Boyer Stanley'
-    }
-  ];
+  leagues: Array<any>;
 
-  array2 = [
+  teams = [
     {
-      guid: '900ea552-ef68-42cc-b6a6-b8c4dff10fb7',
-      age: 32,
-      name: 'L'
+      league: 'EPL',
+      team: 'Arsenal'
     },
     {
-      guid: '880381d3-8dca-4aed-b207-b3b4e575a15f',
-      age: 25,
-      name: 'M'
+      league: 'Seria',
+      team: 'Juve'
     },
-    {
-      guid: '87b47684-c465-4c51-8c88-3f1a1aa2671b',
-      age: 32,
-      name: 'N'
-    }
-  ];
-
-  array3 = [
-    {
-      guid: '900ea552-ef68-42cc-b6a6-b8c4dff10fb7',
-      age: 32,
-      name: 'O'
-    },
-    {
-      guid: '880381d3-8dca-4aed-b207-b3b4e575a15f',
-      age: 25,
-      name: 'P'
-    },
-    {
-      guid: '87b47684-c465-4c51-8c88-3f1a1aa2671b',
-      age: 32,
-      name: 'Q'
+     {
+      league: 'Liga',
+      team: 'Barca'
     }
   ];
 
   //indexOfarray2: int;
   public show: boolean = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+  	this.http.get('http://yourdailyfootball.herokuapp.com/api/leagues/')
+                 .subscribe((res: any)=> {
+                   this.leagues=res.data;
+               }
+              );
   }
 
   chooseTeam(element){

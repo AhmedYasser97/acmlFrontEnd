@@ -33,24 +33,16 @@
  
 <router-outlet></router-outlet>
  </div> -->
- <div *ngFor="let element of array">
+ <div *ngFor="let element of leagues">
  	<div>
  	<button style="color:blue;" (click)="chooseTeam(element)">{{element.name}}</button>
- 	<div ng-show="show">
- 		<div *ngFor="let element of array2">
- 		<label>{{element.name}}</label>
+ 	<!-- <div *ngIf="show">
+ 		<div *ngFor="let element of teams">
+ 		<label>{{element.team}}</label>
  		<input type="checkbox" name="team">
  	</div>
- 	<script>
-
- 	</script>
- 	</div>
+ 	</div> -->
  </div>
-   <!-- <ul>
-  <li *ngFor="let element of array" [type]="element">
-    {{element.name}}, {{element.age}}
-  </li>
-</ul> -->
 </div>
  </div>
 </body>

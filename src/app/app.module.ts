@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PickTeamComponent } from './pick-team/pick-team.component';
+import {Router,RouterModule} from '@angular/router';  
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/token.interceptor';  
 
 @NgModule({
   declarations: [
@@ -25,7 +28,12 @@ import { PickTeamComponent } from './pick-team/pick-team.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  exports:[RouterModule],
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
